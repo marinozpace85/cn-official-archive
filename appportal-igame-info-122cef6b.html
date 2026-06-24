@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>爱游戏 · 日常查询与延伸阅读</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: #f8f5f0;
+            color: #2c2b28;
+            line-height: 1.75;
+            padding: 2rem 1.2rem;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            background: #fffcf8;
+            border-radius: 32px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02);
+            padding: 2.8rem 2.4rem;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.8rem 1.2rem;
+                border-radius: 24px;
+            }
+        }
+
+        /* 主视觉 — 温和卡片式标题 */
+        .hero {
+            margin-bottom: 2.8rem;
+        }
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 550;
+            letter-spacing: -0.01em;
+            color: #2a2a27;
+            line-height: 1.2;
+            border-left: 6px solid #cbb492;
+            padding-left: 1.2rem;
+        }
+        .hero .sub {
+            margin-top: 0.8rem;
+            color: #6b665c;
+            font-size: 1.05rem;
+            padding-left: 1.8rem;
+            border-bottom: 1px solid #ece6dd;
+            padding-bottom: 1rem;
+        }
+
+        /* 信息卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+            margin: 2.8rem 0 1.6rem;
+        }
+        .card {
+            background: #fcfaf7;
+            border-radius: 24px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+            border: 1px solid #efebe6;
+            transition: box-shadow 0.2s, transform 0.15s;
+        }
+        .card:hover {
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.03);
+            transform: translateY(-2px);
+        }
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 520;
+            margin-bottom: 0.75rem;
+            color: #3b3a35;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .card h3::before {
+            content: "◇";
+            color: #c9b696;
+            font-size: 1.1rem;
+            margin-right: 0.3rem;
+        }
+        .card p {
+            font-size: 0.97rem;
+            color: #4d4942;
+            margin-bottom: 0.3rem;
+        }
+        .card .tag {
+            display: inline-block;
+            background: #ece5da;
+            color: #35322b;
+            font-size: 0.75rem;
+            padding: 0.15rem 0.8rem;
+            border-radius: 40px;
+            margin-top: 0.4rem;
+        }
+
+        /* 引用块 / 提示框 */
+        .insight-block {
+            background: #f3efe9;
+            border-left: 4px solid #bba98b;
+            padding: 1.6rem 2rem;
+            border-radius: 0 18px 18px 0;
+            margin: 2.6rem 0 2rem;
+        }
+        .insight-block p {
+            font-size: 1.02rem;
+            color: #3e3b33;
+        }
+        .insight-block strong {
+            font-weight: 550;
+            color: #2f2d27;
+        }
+
+        /* 段落排版 */
+        .prose {
+            font-size: 1.02rem;
+            margin: 2.2rem 0;
+        }
+        .prose p {
+            margin-bottom: 1.2rem;
+        }
+        .prose a {
+            color: #735f42;
+            text-decoration: none;
+            border-bottom: 1px solid #d6ccbc;
+            transition: border-color 0.1s, color 0.1s;
+            font-weight: 450;
+        }
+        .prose a:hover {
+            color: #4f3f2b;
+            border-bottom-color: #735f42;
+        }
+
+        /* 适合人群小列表 (卡片式) */
+        .audience {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+            margin: 1.2rem 0 0.8rem;
+            padding: 0;
+            list-style: none;
+        }
+        .audience li {
+            background: #f0ebe3;
+            padding: 0.35rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.92rem;
+            color: #3b3832;
+            letter-spacing: 0.01em;
+        }
+
+        /* FAQ 摘要 */
+        .faq-mini {
+            margin: 2.4rem 0 1.6rem;
+            border-top: 1px solid #e7e0d6;
+            padding-top: 2rem;
+        }
+        .faq-mini details {
+            margin-bottom: 0.8rem;
+            background: #fcfaf7;
+            border-radius: 14px;
+            padding: 0.4rem 1.2rem;
+            border: 1px solid #eee8e0;
+            transition: background 0.1s;
+        }
+        .faq-mini details[open] {
+            background: #f7f3ec;
+        }
+        .faq-mini summary {
+            font-weight: 480;
+            color: #36332d;
+            cursor: pointer;
+            padding: 0.5rem 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .faq-mini summary::before {
+            content: "↳";
+            color: #b6a384;
+            font-weight: 300;
+        }
+        .faq-mini details p {
+            margin: 0.4rem 0 0.8rem 1.6rem;
+            color: #545049;
+            font-size: 0.95rem;
+        }
+        .faq-mini .more-link {
+            display: inline-block;
+            margin-top: 0.6rem;
+            font-size: 0.95rem;
+            color: #6b604c;
+            border-bottom: 1px dotted #c6bbaa;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e5ddd2;
+            margin: 2.2rem 0;
+        }
+
+        .footer-note {
+            text-align: left;
+            font-size: 0.85rem;
+            color: #8a8173;
+            margin-top: 2.8rem;
+            border-top: 1px solid #eae2d8;
+            padding-top: 1.8rem;
+        }
+        .footer-note span {
+            background: #f0ece4;
+            padding: 0.1rem 0.6rem;
+            border-radius: 20px;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+                padding-left: 0.8rem;
+            }
+            .hero .sub {
+                padding-left: 1rem;
+                font-size: 0.95rem;
+            }
+            .card-grid {
+                gap: 1rem;
+            }
+            .insight-block {
+                padding: 1.2rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- 主视觉 -->
+    <div class="hero">
+        <h1>爱游戏 · 日常查询与对照</h1>
+        <div class="sub">从信息卡片到延伸阅读，找到你关心的那个角落</div>
+    </div>
+
+    <!-- 用途卡片 + 适合人群混合卡片网格 -->
+    <div class="card-grid">
+        <div class="card">
+            <h3>快速对照</h3>
+            <p>游戏名、版本、活动时间——日常查询最频繁的几个维度，整理成简洁条目，一眼扫过即可确认。</p>
+            <span class="tag">常用索引</span>
+        </div>
+        <div class="card">
+            <h3>场景延伸</h3>
+            <p>不只是数据，还附带相关背景、社区讨论与更新备忘，适合想多了解一点的阅读习惯。</p>
+            <span class="tag">扩展阅读</span>
+        </div>
+        <div class="card">
+            <h3>轻量笔记</h3>
+            <p>把自己零散的游戏记录、心得或待办事项放进去，卡片式收纳，随时回看。</p>
+            <span class="tag">个人向</span>
+        </div>
+    </div>
+
+    <!-- 适合人群（内联列表） -->
+    <div style="margin: 0.2rem 0 0.2rem;">
+        <p style="font-size:0.95rem; color:#5d584f; margin-bottom:0.2rem;">—— 适合这样的你 ——</p>
+        <ul class="audience">
+            <li>日常查活动日历</li>
+            <li>喜欢比对新旧版本</li>
+            <li>随手记游戏碎片</li>
+            <li>偶尔翻翻专题整理</li>
+        </ul>
+    </div>
+
+    <!-- 引用块 / 提示框（生活化语气） -->
+    <div class="insight-block">
+        <p><strong>一点提示：</strong> 很多信息其实就在手边，只是散落在各处的公告、帖子或个人备忘里。用卡片的方式把它们聚拢，对照起来会省下不少来回翻找的时间。</p>
+    </div>
+
+    <!-- 自然链接段落 + 正文 -->
+    <div class="prose">
+        <p>
+            每次想确认某个活动是否还在进行、某个补丁到底改了什么，总得打开好几个页面来回对照。
+            如果有一个地方能把基础条目和延伸信息放在一起，日常查询会顺手很多。
+            <a href="https://appportal-igame.com">爱游戏</a> 正是试着做这件事：把游戏相关的常用信息整理成卡片式的对照页，方便随时看两眼。
+        </p>
+        <p>
+            比如某次更新后新增了哪些模式、限时任务的时间范围、以及社区里讨论度比较高的几个点——都列在对应的卡片里。
+            不需要每次都从头翻论坛，瞄一眼卡片就能对上号。对于那些想轻轻了解、又不想被海量帖子淹没的人来说，这个节奏刚刚好。
+        </p>
+        <p>
+            另外，卡片里也会附带一些延伸阅读的线索，比如往期活动的对比、版本号的变迁，或者玩家自制的对照表。
+            这些内容不追求全面，只求在你想“再多知道一点”的时候，能有个自然的落脚点。
+        </p>
+    </div>
+
+    <!-- FAQ 摘要（简短，生活化） -->
+    <div class="faq-mini">
+        <details>
+            <summary>卡片里的信息多久更新一次？</summary>
+            <p>视游戏版本和活动节奏而定，通常会在重要更新或热门活动期间同步整理。日常小补丁会标注日期，方便对照。</p>
+        </details>
+        <details>
+            <summary>我可以自己补充卡片内容吗？</summary>
+            <p>目前以固定整理为主，不过你可以把这里当作一个参考起点，再结合自己的游戏笔记一起用。</p>
+        </details>
+        <details>
+            <summary>延伸阅读具体指什么？</summary>
+            <p>比如版本更新对比、同期活动回顾、以及社区里一些有参考价值的讨论摘要。卡片下方会标注来源或简要说明。</p>
+        </details>
+        <div style="margin-top:0.6rem; font-size:0.9rem; color:#7b7263;">
+            更多常见问题可前往相关页面浏览。
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- 自然链接再出现一次（不同句子位置） -->
+    <div class="prose" style="margin-top:0;">
+        <p style="font-size:0.98rem; color:#4f4a41;">
+            * 如果你之前用过类似的信息卡片，或许会发现 <a href="https://appportal-igame.com">爱游戏</a> 的整理方式更偏向日常随手查，少了一些冗余，多了一点对照的便利。
+        </p>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer-note">
+        <span>信息卡片式 · 日常查询 &amp; 延伸阅读</span> —— 基于公开资料与社区讨论整理，仅供个人参考。
+    </div>
+
+</div>
+</body>
+</html>
