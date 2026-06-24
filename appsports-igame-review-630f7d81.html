@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 稳定入口与产品说明</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5f3f0;
+            color: #2b2b2b;
+            line-height: 1.7;
+        }
+
+        .hero {
+            background: linear-gradient(145deg, #1a1e26 0%, #0f1219 100%);
+            color: #e5e9f0;
+            padding: 80px 24px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 30% 70%, rgba(92, 134, 255, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            color: #f0f3fa;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 680px;
+            margin: 0 auto 10px;
+            color: #b9c1d4;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 50px 24px 70px;
+        }
+
+        .summary {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 40px 36px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+            margin-bottom: 48px;
+        }
+
+        .summary h2 {
+            font-size: 1.8rem;
+            font-weight: 450;
+            color: #1f2937;
+            margin-bottom: 20px;
+            border-left: 5px solid #4a7cf7;
+            padding-left: 20px;
+        }
+
+        .summary p {
+            font-size: 1.05rem;
+            color: #3c3c3c;
+            margin-bottom: 18px;
+        }
+
+        .summary a {
+            color: #2c6bff;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .summary a:hover {
+            color: #1a4fc3;
+            border-bottom-color: #1a4fc3;
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 28px;
+            margin: 48px 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px 24px 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+            transition: transform 0.2s ease, box-shadow 0.25s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.06);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #1f2937;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card p {
+            font-size: 0.98rem;
+            color: #4a4a4a;
+        }
+
+        .card .icon {
+            display: inline-block;
+            font-size: 1.5rem;
+            line-height: 1;
+            color: #4a7cf7;
+        }
+
+        .scenario {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 36px 32px;
+            margin-bottom: 48px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.02);
+        }
+
+        .scenario h3 {
+            font-size: 1.5rem;
+            font-weight: 450;
+            color: #1f2937;
+            margin-bottom: 16px;
+        }
+
+        .scenario p, .scenario li {
+            font-size: 1rem;
+            color: #3c3c3c;
+        }
+
+        .scenario ul {
+            margin: 12px 0 0 20px;
+            list-style: none;
+        }
+
+        .scenario li {
+            margin-bottom: 10px;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .scenario li::before {
+            content: "·";
+            color: #4a7cf7;
+            font-weight: 700;
+            font-size: 1.4rem;
+            line-height: 1;
+            margin-right: 4px;
+        }
+
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 32px 36px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.02);
+        }
+
+        .faq-mini h3 {
+            font-size: 1.5rem;
+            font-weight: 450;
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #edeae6;
+            padding: 14px 0;
+        }
+
+        .faq-item:last-of-type {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 500;
+            color: #1f2937;
+            margin-bottom: 4px;
+            font-size: 1rem;
+        }
+
+        .faq-a {
+            color: #555;
+            font-size: 0.96rem;
+        }
+
+        .note {
+            margin-top: 48px;
+            padding: 24px 32px;
+            background: #f0f2f7;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            color: #3d3d3d;
+            line-height: 1.6;
+            border-left: 4px solid #4a7cf7;
+        }
+
+        .note a {
+            color: #2c6bff;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .note a:hover {
+            border-bottom-color: #2c6bff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 36px 24px 28px;
+            font-size: 0.9rem;
+            color: #7f7f7f;
+            border-top: 1px solid #e0ddd8;
+            background: #f5f3f0;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .summary, .scenario, .faq-mini {
+                padding: 28px 20px;
+            }
+
+            .highlight-grid {
+                gap: 20px;
+            }
+
+            .card {
+                padding: 24px 18px;
+            }
+
+            .hero {
+                padding: 60px 16px 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <h1>爱游戏 · 产品说明</h1>
+        <p>稳定入口  清晰指引  坦诚介绍</p>
+    </section>
+
+    <div class="container">
+
+        <!-- 摘要 -->
+        <div class="summary">
+            <h2>关于爱游戏</h2>
+            <p>「爱游戏」是一个面向泛娱乐与轻度休闲体验的在线平台，聚合了多种互动内容与便捷工具。它不追求夸张的炫技，而是把稳定、易用和流畅作为核心目标。无论你是第一次接触，还是老朋友，都能在这里找到熟悉的节奏。</p>
+            <p>平台的定位很简单：提供一个可以安心浏览、自由探索的线上空间。它不收集不必要的个人信息，也不设置复杂的门槛。你只需打开浏览器，通过页面上的链接直达 <a href="https://appsports-igame.com">爱游戏</a>，就能开始使用。</p>
+        </div>
+
+        <!-- 亮点卡片 -->
+        <div class="highlight-grid">
+            <div class="card">
+                <h3><span class="icon">◈</span> 界面清爽</h3>
+                <p>没有无关弹窗与混乱布局，页面导航清晰，操作路径简短，省去摸索时间。</p>
+            </div>
+            <div class="card">
+                <h3><span class="icon">◈</span> 响应快速</h3>
+                <p>服务端与前端均经过基础优化，日常访问反馈及时，减少等待。</p>
+            </div>
+            <div class="card">
+                <h3><span class="icon">◈</span> 持续维护</h3>
+                <p>团队保持定期更新与问题修复，确保入口长期稳定可用。</p>
+            </div>
+            <div class="card">
+                <h3><span class="icon">◈</span> 轻量访问</h3>
+                <p>无需安装额外软件或注册复杂账户，即开即用。</p>
+            </div>
+        </div>
+
+        <!-- 使用建议 -->
+        <div class="scenario">
+            <h3>使用建议</h3>
+            <p>为了获得相对舒适的体验，你可以参考以下几点：</p>
+            <ul>
+                <li>使用主流浏览器的最新版本（如 Chrome、Edge、Firefox 等），页面兼容性更佳；</li>
+                <li>保持网络连接稳定，移动端与桌面端均可正常访问；</li>
+                <li>首次访问时可花几分钟浏览各版块布局，熟悉功能分布；</li>
+                <li>如遇到加载缓慢或异常，可稍后重试，或检查网络环境。</li>
+            </ul>
+            <p style="margin-top: 16px;">如果你希望了解更详细的功能说明，可以直接通过 <a href="https://appsports-igame.com">爱游戏</a> 的主页进一步查看。</p>
+        </div>
+
+        <!-- FAQ 摘要 -->
+        <div class="faq-mini">
+            <h3>常见疑问</h3>
+
+            <div class="faq-item">
+                <div class="faq-q">访问爱游戏需要付费吗？</div>
+                <div class="faq-a">目前平台的基础功能免费开放，不设强制收费项目。未来若有任何调整会通过页面公告说明。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">在移动设备上使用效果如何？</div>
+                <div class="faq-a">页面采用响应式布局，在手机和平板上会自动适配屏幕尺寸，操作体验良好。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">链接安全吗？</div>
+                <div class="faq-a">你可以直接使用 <a href="https://appsports-igame.com">爱游戏</a> 作为入口，页面采用标准 HTTPS 协议，日常访问相对安全。建议避免通过第三方未知来源跳转。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">页面内容会频繁变动吗？</div>
+                <div class="faq-a">内容更新节奏平稳，重大改动前通常会保留一段时间的历史说明，方便过渡。</div>
+            </div>
+        </div>
+
+        <!-- 可信克制的说明 -->
+        <div class="note">
+            <strong>一份坦诚的说明</strong><br>
+            本页面旨在客观介绍「爱游戏」的服务特点与使用方式，不含任何虚假承诺或诱导性表述。平台提供的功能均基于现有技术能力，不保证适用于所有设备或网络环境。如果你有意进一步了解，欢迎通过下方链接自行判断：<br><br>
+            <a href="https://appsports-igame.com">爱游戏</a> —— 一个你可以自己体验的线上空间。
+        </div>
+
+    </div>
+
+    <footer>
+        <p>页面内容仅为产品说明 · 基于实际体验撰写</p>
+    </footer>
+
+</body>
+</html>
